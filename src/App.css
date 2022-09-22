@@ -1,0 +1,121 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; }
+
+body {
+  padding: 0.3em;
+  background-color: #1b1b1b;
+  box-shadow: inset 0 0 10em 4em black;
+  background-size: cover;
+  min-height: 100vh; }
+
+h1 {
+  font-weight: 400;
+  font-size: 2.5rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  color: #ffff00; }
+
+h2, h3, h4, p, li {
+  color: #5f5f5f; }
+
+nav {
+  background-color: white;
+  margin: 1em 0; }
+
+.nav_ul {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center; }
+  .nav_ul li {
+    list-style-type: none;
+    display: flex;
+    justify-content: center; }
+
+.--cardWidgetC {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center; }
+  .--cardWidgetC h3 {
+    color: initial;
+    margin-right: 0.5em; }
+  .--cardWidgetC img {
+    width: 2.5em; }
+
+.--navOpY, .--navOpN {
+  color: #ffffff00;
+  border-style: solid;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-width: 5px; }
+
+.--navOpY {
+  border-color: #ebdc04; }
+
+.--botonContar {
+  width: 7em;
+  padding: 0.3em;
+  background-color: #1d1d1b;
+  border-radius: 8%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1.2fr;
+  grid-template-areas: "sumar canti restar" "agregar agregar agregar";
+  justify-content: center;
+  align-items: center;
+  border-style: none; }
+  .--botonContar .--operationSum {
+    width: 70%;
+    height: 100%;
+    border-radius: 50%;
+    border-style: none;
+    background-color: yellow;
+    grid-area: sumar; }
+  .--botonContar .--operationRest {
+    width: 70%;
+    height: 100%;
+    border-radius: 50%;
+    border-style: none;
+    background-color: yellow;
+    justify-self: self-end;
+    grid-area: restar; }
+  .--botonContar .--cantidad {
+    text-align: center;
+    grid-area: canti; }
+  .--botonContar .--addCar {
+    width: max-content;
+    padding: 0.2em;
+    font-size: 80%;
+    grid-area: agregar;
+    border-radius: 10%;
+    border-style: none;
+    background-color: yellow; }
+
+.carrito {
+  display: inline-block;
+  background-color: #5a5a5a;
+  color: #ffff00; }
+
+.categorias {
+  margin: 2%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  background-color: rgba(255, 255, 0, 0.959);
+  border-radius: 2%; }
+  .categorias li {
+    font-weight: 500;
+    list-style-type: none; }
+    .categorias li a {
+      color: black; }
+
+.catNot {
+  text-decoration: none;
+  border-bottom: 1px;
+  border-color: #1f1f1f; }

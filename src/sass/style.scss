@@ -1,0 +1,27 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    padding: 0.3em;
+    background-color: #1b1b1b;
+    box-shadow: inset 0 0 10em 4em black;
+    background-size: cover;
+    min-height: 100vh;
+}
+h1 {
+    font-weight: 400;
+    font-size: 2.5rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    color: #ffff00; }
+h2,h3,h4,p,li{
+    color: #5f5f5f
+}
+
+@import "_NavBarContainer";
+@import "_itemCount";
+@import "_itemDetail";
+@import "_itemListContainer"

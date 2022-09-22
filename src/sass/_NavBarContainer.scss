@@ -1,0 +1,44 @@
+//$color-txt-nav: 
+
+nav{
+    background-color: white;
+    margin: 1em 0;
+}
+.nav_ul{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    li{
+        list-style-type: none;
+        display: flex;
+        justify-content: center;
+    }
+}
+
+.--cardWidgetC{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    h3{
+        color: initial;
+        margin-right: 0.5em;
+    }
+    img{
+        width: 2.5em;
+    }
+}
+
+.--navOpY, .--navOpN{
+    color: #ffffff00;
+    border-style: solid;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-width: 5px;
+}
+.--navOpY{
+    border-color: rgb(235, 220, 4);
+}

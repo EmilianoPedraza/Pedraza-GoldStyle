@@ -1,0 +1,43 @@
+.--botonContar{
+    width: 7em;
+    padding: 0.3em;
+    background-color: #1d1d1b;
+    border-radius: 8%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1.2fr;
+    grid-template-areas: "sumar canti restar" "agregar agregar agregar";
+    justify-content: center;
+    align-items: center;
+    border-style: none;
+    .--operationSum{
+        width: 70%;
+        height: 100%;
+        border-radius: 50%;
+        border-style: none;
+        background-color: yellow;
+        grid-area: sumar ;
+    }
+    .--operationRest{
+        width: 70%;
+        height: 100%;
+        border-radius: 50%;
+        border-style: none;
+        background-color: yellow;
+        justify-self: self-end;
+        grid-area: restar; 
+    }
+    .--cantidad{
+        text-align: center;
+        grid-area: canti;
+    }
+    .--addCar{
+        width: max-content;
+        padding: 0.2em;
+        font-size: 80%;
+        grid-area: agregar;
+        border-radius: 10%;
+        border-style: none;
+        background-color: yellow;
+    }
+}
