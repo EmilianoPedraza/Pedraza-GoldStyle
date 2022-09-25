@@ -1,12 +1,12 @@
 import { useState } from "react";
 //dato:sin estar entre corchetes el parametro(funcion) onAdd no funciona :[
 const ItemCount = ({onAdd}) => {
-  const [contador, setContador] = useState(0);
+  const [contador, setContador] = useState(1);
   const sumar = () => {
     setContador(contador + 1);
   };
   const restar = () => {
-    if (contador > 0) {
+    if (contador > 1) {
       setContador(contador - 1);
     }
   };

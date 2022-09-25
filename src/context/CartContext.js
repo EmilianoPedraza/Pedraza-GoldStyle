@@ -23,7 +23,6 @@ export const CartProvider = ({ children }) => {
           cantidad: cant,
         },
       ];
-      // newArray = [...listProdCar, ...itemCar];
       setListProdCar([...newArray,...itemCar]);
     }
     else{
