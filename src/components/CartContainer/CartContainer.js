@@ -7,7 +7,7 @@ import { CartContext } from "../../context/CartContext";
 import trashDelete from "../../assets/icos/trashDelete.svg";
 
 const CartContainer = () => {
-  const { listProdCar, removeItem, clear } = useContext(CartContext);
+  const { listProdCar, removeItem, clear , totales} = useContext(CartContext);
 
   //estado para mensaje o boton de vaciar carrito
   const [msj, setMsj] = useState();
@@ -15,7 +15,7 @@ const CartContainer = () => {
   useEffect(() => {
     listProdCar.length > 0
       ? setMsj(<button onClick={() => clear()}>Vaciar Carrito</button>)
-      : setMsj(<h3>No se encuentran productos disponibles en el carrito</h3>);
+      : setMsj(<h2>No se encuentran productos disponibles en el carrito</h2>);
   }, [listProdCar]);
 
   return (
@@ -35,6 +35,7 @@ const CartContainer = () => {
           </button>
         </div>
       ))}
+      <>{listProdCar.length > 0 && <h3>Total calculado: {totales.totalPrices},00 $</h3>}</>
       <>{msj}</>
     </div>
   );

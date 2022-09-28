@@ -6,6 +6,19 @@ export const CartContext = React.createContext();
 
 export const CartProvider = ({ children }) => {
   const [listProdCar, setListProdCar] = useState([]);
+  const [totales, setTotales]=useState({})
+
+  
+  useEffect(()=>{
+    let acu = 0
+    listProdCar.map(item=>{
+      acu += item.totalPrice
+    })
+    setTotales({
+      ...totales,["totalPrices"] : acu, ["cantidadItems"] : listProdCar.length
+    })
+  },[listProdCar])
+
 
   //agregar productos
   const addItem = (item, cant) => {
@@ -13,7 +26,8 @@ export const CartProvider = ({ children }) => {
     const newArray = [...listProdCar]
     if(listProdCar.length>0){
       newArray.map(e=>{
-        e.id === item.id ? e.cantidad = cant : con += 1
+        e.id === item.id ? e.cantidad += cant : con += 1
+        e.id === item.id ? e.totalPrice = e.cantidad * e.price : null
       })
     }
     if(con === listProdCar.length){
@@ -21,6 +35,7 @@ export const CartProvider = ({ children }) => {
         {
           ...item,
           cantidad: cant,
+          totalPrice: cant * item.price
         },
       ];
       setListProdCar([...newArray,...itemCar]);
@@ -42,7 +57,7 @@ export const CartProvider = ({ children }) => {
     setListProdCar([]);
   };
   return (
-    <CartContext.Provider value={{ listProdCar, addItem, removeItem, clear }}>
+    <CartContext.Provider value={{ listProdCar, addItem, removeItem, clear , totales}}>
       {children}
     </CartContext.Provider>
   );

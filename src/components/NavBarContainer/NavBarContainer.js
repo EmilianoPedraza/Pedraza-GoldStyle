@@ -10,9 +10,12 @@ import car from "../../assets/icos/car.svg"
 import {NavLink} from 'react-router-dom'
 //import functional component-container
 import CartWidgetContaier from "./CartWidgetContainer/CartWidgetContainer";
-
+import { useContext } from "react"
+import {CartContext} from "../../context/CartContext"
+ 
 
 const NavBarContaier = () => {
+  const {totales} = useContext(CartContext)
   return (
     <nav>
       <ul className="nav_ul">
@@ -40,7 +43,7 @@ const NavBarContaier = () => {
         <li>
           <NavLink to="/carrito" className={({isActive})=> isActive ? "--navOpY" : "--navOpN"}>
             <CartWidgetContaier rutImg={car}>
-                <h3>Carrito</h3>
+              <>{totales.cantidadItems > 0 ? <h3>{totales.cantidadItems}</h3> : <h3>Vacio</h3>}</>
             </CartWidgetContaier>
           </NavLink>
         </li>
