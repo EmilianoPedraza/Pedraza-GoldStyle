@@ -1,25 +1,40 @@
-import data from "../../mook-data";
+
 import { useEffect, useState } from "react";
 import { useParams, NavLink } from "react-router-dom";
-
 import ItemList from "../ItemList/ItemList";
-
+//direbase
+import {where,query,collection, getDocs} from "firebase/firestore"
+import {db} from "../../../utils/fireBase"
+import { async } from "@firebase/util";
 const ItemListContainer = () => {
   // const [dt, setDt] = useState('')
   const [dt, setDt] = useState([]);
   const { categoryId } = useParams();
-  const getItem = new Promise((resolve, rejected) => {
-    data !== [] ? resolve(data) : rejected("");
-  });
-  useEffect(() => {
-    getItem.then((r) => {
-      let categoria = r;
-      if (categoryId !== undefined) {
-        categoria = r.filter((item) => item.categoria === categoryId);
+
+
+  useEffect(()=>{
+    const valid = ()=>{
+      if (categoryId !== undefined){
+        return query(collection(db, "items"), where("categoria","==", categoryId))
       }
-      setDt(categoria);
-    });
-  }, [categoryId]);
+      return query(collection(db, "items"))
+     }
+    const getItemFilter = async()=>{
+      const itemsF = valid()
+      const response = await getDocs(itemsF)
+      const products = response.docs.map(i =>{
+        const element = {
+          ...i.data(), id: i.id
+        }
+        return element
+      })
+      setDt(products)
+    }
+    getItemFilter()
+
+  },[categoryId])
+
+
   return (
     <div className="catalogo">
       <ul className="categorias">

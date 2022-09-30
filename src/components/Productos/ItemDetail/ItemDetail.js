@@ -1,17 +1,28 @@
 import {useParams} from 'react-router-dom'
-import data from "../../mook-data";
 import ItemCount from '../ItemCount/ItemCount';
-import {useState, useContext} from 'react';
+import {useState, useContext, useEffect} from 'react';
 import { CartContext } from '../../../context/CartContext';
-
+import {doc, getDoc} from "firebase/firestore"
+import { db } from '../../../utils/fireBase';
 
 const ItemDetail = ()=>{
   const {id} = useParams() 
-  const product = data[parseInt(id) - 1]
+  const [product, setProduct] = useState({})
   const [count, setCount] = useState(0)
 
   //acceso al contexto
   const {addItem} = useContext(CartContext)
+
+  //
+  useEffect(()=>{
+    const getProd = async()=>{
+      const item = doc(db, "items", id)
+      const prod = await getDoc(item)
+      const newPrd = {...prod.data(),id: prod.id}
+      setProduct(newPrd)
+    }
+    getProd()
+  },[])
 
 
   const onAdd =(dat)=>{
