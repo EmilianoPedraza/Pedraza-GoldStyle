@@ -119,3 +119,50 @@ nav {
   text-decoration: none;
   border-bottom: 1px;
   border-color: #1f1f1f; }
+
+.opacityOn {
+  opacity: .1; }
+
+.boxForm {
+  opacity: none;
+  position: absolute;
+  width: 100%;
+  height: 81%;
+  top: 19%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center; }
+
+.boxForm__div {
+  padding: 2em;
+  width: 60%;
+  height: max-content;
+  border-style: none;
+  border-radius: 2rem;
+  background-color: white; }
+  .boxForm__div .--form {
+    display: grid; }
+
+.home {
+  width: 100%;
+  height: 80vh;
+  margin-bottom: 2em;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: stretch; }
+  .home .__div {
+    width: 40%;
+    padding: 2em;
+    border-style: solid;
+    border-radius: 10%;
+    border-color: #e9ff1e;
+    text-align: center; }
+  .home .img-home {
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; }
+    .home .img-home img {
+      border-radius: 20% 50%; }
