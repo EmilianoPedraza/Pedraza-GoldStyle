@@ -1,0 +1,38 @@
+//--conteinerCar
+//                --itemContainer
+//                          --item
+
+//--total
+//--btnVaciarCar
+//--btnFinalCom
+
+.--conteinerCar {
+  height: 100%;
+  display: grid;
+  margin: 2%;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: auto auto;
+  grid-template-areas: "item item item" "vaciar total finalizar";
+  .--itemContainer {
+    height: 75vh;
+    grid-area: item;
+    .--item {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+  }
+  .--total {
+    grid-area: total;
+  }
+  .--btnVaciarCar {
+    grid-area: vaciar;
+  }
+  .--btnFinalCom {
+    grid-area: finalizar;
+  }
+}
+.--item{
+    .--imgCar{
+        width: 100px;
+    }
+}

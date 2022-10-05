@@ -24,8 +24,12 @@ const CartContainer = () => {
     listProdCar.length > 0
       ? setMsj(
           <>
-            <button onClick={() => clear()}>Vaciar Carrito</button>
-            <button onClick={() => desplegar()}>Finalizar Compra</button>
+            <button className="--btnVaciarCar" onClick={() => clear()}>
+              Vaciar Carrito
+            </button>
+            <button className="--btnFinalCom" onClick={() => desplegar()}>
+              Finalizar Compra
+            </button>
           </>
         )
       : setMsj(<h2>No se encuentran productos disponibles en el carrito</h2>);
@@ -33,31 +37,36 @@ const CartContainer = () => {
 
   return (
     <>
-      <div className={`${desOn ? "opacityOn" : ""}`}>
-        {listProdCar.map((prd) => (
-          <div key={prd.id + "c"}>
-            <img src={prd.image} />
-            <ul>
-              <li>Nombre-{prd.name}</li>
-              <li>Cantidad-{prd.cantidad}</li>
-            </ul>
-            <button
-              className="--deleteItemCar"
-              onClick={() => removeItem(prd.id)}
-            >
-              <img src={trashDelete} />
-            </button>
-          </div>
-        ))}
+      <div className={"--conteinerCar " + `${desOn ? "opacityOn" : ""}`}>
+        <div className="--itemContainer">
+          {listProdCar.map((prd) => (
+            <div key={prd.id + "c"} className="--item">
+              <img className="--imgCar" src={prd.image} />
+              <ul>
+                <li>Nombre-{prd.name}</li>
+                <li>Cantidad-{prd.cantidad}</li>
+              </ul>
+              <button
+                className="--deleteItemCar"
+                onClick={() => removeItem(prd.id)}
+              >
+                <img src={trashDelete} />
+              </button>
+            </div>
+          ))}
+        </div>
         <>
           {listProdCar.length > 0 && (
-            <h3>Total calculado: {totales.totalPrices}$</h3>
+            <h3 className="--total">Total: {totales.totalPrices}$</h3>
           )}
         </>
         <>{msj}</>
       </div>
-      <>{desOn && <FormUser close={setDesOn} />}</>
 
+
+
+
+      <>{desOn && <FormUser close={setDesOn} />}</>
     </>
   );
 };
