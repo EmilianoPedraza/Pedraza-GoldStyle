@@ -1,7 +1,4 @@
-//imports icos
-//import car from "../../assets/icos/car.svg";
-//import user from "../../assets/icos/user.svg";
-//import search from "../../assets/icos/search.svg";
+
 import bag from "../../assets/icos/bag.svg"
 import contact from "../../assets/icos/contact.svg"
 import home from "../../assets/icos/home.svg"

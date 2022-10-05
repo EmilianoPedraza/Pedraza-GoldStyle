@@ -1,39 +1,39 @@
-
 import { useEffect, useState } from "react";
 import { useParams, NavLink } from "react-router-dom";
 import ItemList from "../ItemList/ItemList";
 //direbase
-import {where,query,collection, getDocs} from "firebase/firestore"
-import {db} from "../../../utils/fireBase"
+import { where, query, collection, getDocs } from "firebase/firestore";
+import { db } from "../../../utils/fireBase";
 import { async } from "@firebase/util";
 const ItemListContainer = () => {
   // const [dt, setDt] = useState('')
   const [dt, setDt] = useState([]);
   const { categoryId } = useParams();
 
-
-  useEffect(()=>{
-    const valid = ()=>{
-      if (categoryId !== undefined){
-        return query(collection(db, "items"), where("categoria","==", categoryId))
+  useEffect(() => {
+    const valid = () => {
+      if (categoryId !== undefined) {
+        return query(
+          collection(db, "items"),
+          where("categoria", "==", categoryId)
+        );
       }
-      return query(collection(db, "items"))
-     }
-    const getItemFilter = async()=>{
-      const itemsF = valid()
-      const response = await getDocs(itemsF)
-      const products = response.docs.map(i =>{
+      return query(collection(db, "items"));
+    };
+    const getItemFilter = async () => {
+      const itemsF = valid();
+      const response = await getDocs(itemsF);
+      const products = response.docs.map((i) => {
         const element = {
-          ...i.data(), id: i.id
-        }
-        return element
-      })
-      setDt(products)
-    }
-    getItemFilter()
-
-  },[categoryId])
-
+          ...i.data(),
+          id: i.id,
+        };
+        return element;
+      });
+      setDt(products);
+    };
+    getItemFilter();
+  }, [categoryId]);
 
   return (
     <div className="catalogo">
@@ -63,9 +63,11 @@ const ItemListContainer = () => {
           </NavLink>
         </li>
       </ul>
-      {dt.map((item) => {
-        return <ItemList key={"-" + item.id} prod={item} />;
-      })}
+      <div className="--containerProducts">
+        {dt.map((item) => {
+          return <ItemList key={"-" + item.id} prod={item} />;
+        })}
+      </div>
     </div>
   );
 };

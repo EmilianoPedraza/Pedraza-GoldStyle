@@ -1,12 +1,19 @@
-// import ItemCount from "../ItemCount/ItemCount";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 const ItemList = (prod) => {
+  //si el producto no existe o algo se ejecuta rejected
   const [product, setProduct] = useState("cargando");
+
+  const mensajeError = "error en la carga del producto";
+
   const procesTime = new Promise((resolve, rejected) => {
-    resolve(prod);
-    rejected("error");
+    const prd = prod || mensajeError;
+    if (prd !== mensajeError) {
+      resolve(prd);
+    } else {
+      rejected(prd);
+    }
   });
 
   useEffect(() => {
@@ -20,7 +27,12 @@ const ItemList = (prod) => {
         stock: r.prod.stock,
       });
     });
+
+    procesTime.catch((r) => {
+      setProduct(false);
+    });
   }, []);
+
   const mostrar = (val) => {
     if (val) {
       return (
@@ -33,8 +45,8 @@ const ItemList = (prod) => {
           </ul>
 
           <Link to={"/productos/" + `${product.categoria}/${product.id}`}>
-            <button>ver más detalles</button>
-          </Link> 
+            <button className="--btnDetails">ver más detalles</button>
+          </Link>
         </div>
       );
     } else {
@@ -45,7 +57,12 @@ const ItemList = (prod) => {
       );
     }
   };
-  return <>{product === "cargando" ? mostrar(false) : mostrar(true)}</>;
+
+  const rendering = () => {
+    return product === "cargando" ? mostrar(false) : mostrar(true);
+  };
+
+  return <>{product && rendering()}</>;
 };
 
 export default ItemList;

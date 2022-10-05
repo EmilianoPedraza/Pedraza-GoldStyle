@@ -8,12 +8,10 @@ import { db } from '../../../utils/fireBase';
 const ItemDetail = ()=>{
   const {id} = useParams() 
   const [product, setProduct] = useState({})
-  const [count, setCount] = useState(0)
 
-  //acceso al contexto
+
   const {addItem} = useContext(CartContext)
 
-  //
   useEffect(()=>{
     const getProd = async()=>{
       const item = doc(db, "items", id)
@@ -26,7 +24,6 @@ const ItemDetail = ()=>{
 
 
   const onAdd =(dat)=>{
-    setCount(dat)
     addItem(product, dat)
   }
   
@@ -38,8 +35,7 @@ const ItemDetail = ()=>{
                     <li className="--price-">Precio: {product.price}$</li>
                     <li className="--stock-">Stock: {product.stock}</li>
                   </ul>
-                  <p className="--especificacines">Lorem ipsum dolor sit amet consectetur adipisicingelit. Inventore fugit, quasi praesentium, quam ducimus magni, impedit voluptatibus omnis iure laudantium excepturi earum ratione. Fugit harum quis perspiciatis! Rerum, provident recusandae!</p>
-                  {/* <h3 className='carrito'>En carrito: {count} </h3> */}
+                  <p className="--especificacines">{product.detail}</p>
                   <ItemCount onAdd={onAdd}/>
           </div>) 
 }

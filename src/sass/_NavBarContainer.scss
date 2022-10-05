@@ -42,3 +42,9 @@ nav{
 .--navOpY{
     border-color: rgb(235, 220, 4);
 }
+
+.--containerProducts{
+    width: 100%;
+    margin: 1em;
+    flex-direction: row;
+}

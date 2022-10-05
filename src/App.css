@@ -58,6 +58,11 @@ nav {
 .--navOpY {
   border-color: #ebdc04; }
 
+.--containerProducts {
+  width: 100%;
+  margin: 1em;
+  flex-direction: row; }
+
 .--botonContar {
   width: 7em;
   padding: 0.3em;
@@ -97,11 +102,6 @@ nav {
     border-style: none;
     background-color: yellow; }
 
-.carrito {
-  display: inline-block;
-  background-color: #5a5a5a;
-  color: #ffff00; }
-
 .categorias {
   margin: 2%;
   display: flex;
@@ -119,6 +119,48 @@ nav {
   text-decoration: none;
   border-bottom: 1px;
   border-color: #1f1f1f; }
+
+.--containerProducts {
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  flex-wrap: wrap; }
+
+.--itemPrd {
+  width: 38%;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto 1fr 0.5fr 0.5fr;
+  grid-template-areas: "img" "titulo" "datos" "detailsBtn";
+  justify-items: center;
+  padding: 8px;
+  border-style: solid;
+  border-color: #5c5c5c;
+  border-width: 0.1em;
+  border-radius: 5%; }
+  .--itemPrd .--imgPrd {
+    display: block;
+    margin-bottom: 2%;
+    border-radius: 1%;
+    width: 90%;
+    grid-area: img; }
+  .--itemPrd .--tittlePrd {
+    margin-bottom: 2%;
+    grid-area: titulo; }
+  .--itemPrd .--datPrdA {
+    margin-bottom: 2%;
+    grid-area: datos; }
+    .--itemPrd .--datPrdA li {
+      list-style-type: none; }
+  .--itemPrd .--btnDetails {
+    margin-bottom: 2%;
+    grid-area: detailsBtn;
+    border-style: none;
+    padding: 0.5em 0.5em;
+    border-radius: 0.5em;
+    background-color: #cb4cfd; }
 
 .opacityOn {
   opacity: .1; }
