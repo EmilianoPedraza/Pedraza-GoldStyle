@@ -1,2 +1,57 @@
-
-
+.--totalData {
+  margin: 2%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  .--divImgBox {
+    width: 40rem;
+    text-align: center;
+    margin-bottom: 0.5em;
+  }
+  .--divDataBox {
+    width: 40rem;
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: auto auto auto auto;
+    grid-template-areas: "titulo" "lista" "datos" "contador";
+    justify-items: center;
+    gap: 1rem;
+    background-color: #161616;
+    border-radius: 1rem;
+    box-shadow: #cb4cfd 0rem 0rem 0.5rem;
+    .--tittlePrd- {
+      display: inline-block;
+      margin-top: 0.5em;
+      height: 1.5em;
+      border-style: solid;
+      border-left: none;
+      border-right: none;
+      border-top: none;
+      border-width: 2px;
+      border-color: #b6b602d5;
+      grid-area: titulo;
+    }
+    .--datPrdA- {
+      width: 90%;
+      list-style-type: none;
+      grid-area: lista;
+    }
+    .--especificacines {
+      width: 90%;
+      grid-area: datos;
+    }
+    .--botonContar {
+      justify-self: center;
+      grid-area: contador;
+    }
+  }
+}
+// .--datPrdA- {
+//   .--categ- {
+//   }
+//   .--price- {
+//   }
+//   .--stock- {
+//   }
+// }
