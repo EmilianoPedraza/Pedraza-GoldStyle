@@ -262,22 +262,81 @@ nav {
 .--conteinerCar {
   height: 100%;
   display: grid;
-  margin: 2%;
+  margin: 0 2%;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: auto auto;
-  grid-template-areas: "item item item" "vaciar total finalizar"; }
+  grid-template-areas: "item item item" "vaciar total finalizar";
+  justify-self: center; }
   .--conteinerCar .--itemContainer {
-    height: 75vh;
+    overflow: auto;
+    height: 74vh;
     grid-area: item; }
     .--conteinerCar .--itemContainer .--item {
+      width: 100%;
+      margin-bottom: 1em;
+      padding: 0.5%;
       display: grid;
-      grid-template-columns: 1fr 1fr 1fr; }
+      grid-template-columns: auto 3fr;
+      grid-template-rows: 2fr;
+      grid-template-areas: "img ul" "img btn";
+      align-items: center;
+      column-gap: 1em;
+      background-color: #0000006e;
+      border-radius: 1em;
+      border-style: solid;
+      border-color: #ffff0086;
+      border-width: 1px; }
   .--conteinerCar .--total {
-    grid-area: total; }
+    text-align: center;
+    width: fit-content;
+    padding: 1%;
+    justify-self: center;
+    grid-area: total;
+    background-color: #fffff7;
+    border-radius: 1rem; }
   .--conteinerCar .--btnVaciarCar {
+    background-color: #d41e1e;
+    border-style: none;
+    width: fit-content;
+    padding: 1% 10%;
+    justify-self: center;
+    border-radius: 1rem;
     grid-area: vaciar; }
   .--conteinerCar .--btnFinalCom {
+    background-color: #cb4cfd;
+    border-style: none;
+    width: fit-content;
+    padding: 1% 7.7%;
+    justify-self: center;
+    border-radius: 1rem;
     grid-area: finalizar; }
 
+.--item .--datesUl {
+  grid-area: ul;
+  list-style-type: none; }
+
 .--item .--imgCar {
-  width: 100px; }
+  grid-area: img;
+  width: 100px;
+  border-radius: 0.5em; }
+
+.--item .--deleteItemCar {
+  width: 2rem;
+  height: 2rem;
+  border-style: none;
+  border-radius: 4px;
+  grid-area: btn;
+  background-color: #e9782cfd; }
+  .--item .--deleteItemCar img {
+    width: 98%; }
+
+.--NotCarContainer {
+  height: 1vh;
+  margin: 0 2%; }
+  .--NotCarContainer .--notProd {
+    display: inline-block;
+    border: #ffff0086 solid;
+    border-width: 1px;
+    border-top: none;
+    border-left: none;
+    border-right: none; }

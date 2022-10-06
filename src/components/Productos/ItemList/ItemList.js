@@ -40,7 +40,7 @@ const ItemList = (prod) => {
           <img src={product.image} className="--imgPrd" />
           <h3 className="--tittlePrd">{product.name}</h3>
           <ul className="--datPrdA">
-            <li className="--price">Precio: {product.price}$</li>
+            <li className="--price">Precio: {product.price} ARS</li>
             <li className="--stock">Stock: {product.stock}</li>
           </ul>
 

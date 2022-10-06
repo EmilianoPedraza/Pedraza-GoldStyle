@@ -32,19 +32,26 @@ const CartContainer = () => {
             </button>
           </>
         )
-      : setMsj(<h2>No se encuentran productos disponibles en el carrito</h2>);
+      : setMsj(1);
   }, [listProdCar]);
 
   return (
     <>
+      {msj === 1 && (
+        <div className="--NotCarContainer">
+          <h2 className="--notProd">
+            No se encuentran productos disponibles en el carrito
+          </h2>
+        </div>
+      )}
       <div className={"--conteinerCar " + `${desOn ? "opacityOn" : ""}`}>
         <div className="--itemContainer">
           {listProdCar.map((prd) => (
             <div key={prd.id + "c"} className="--item">
               <img className="--imgCar" src={prd.image} />
-              <ul>
-                <li>Nombre-{prd.name}</li>
-                <li>Cantidad-{prd.cantidad}</li>
+              <ul className="--datesUl">
+                <li>Nombre: {prd.name}</li>
+                <li>Cantidad: {prd.cantidad}</li>
               </ul>
               <button
                 className="--deleteItemCar"
@@ -57,15 +64,11 @@ const CartContainer = () => {
         </div>
         <>
           {listProdCar.length > 0 && (
-            <h3 className="--total">Total: {totales.totalPrices}$</h3>
+            <h3 className="--total">Total: {totales.totalPrices} ARS</h3>
           )}
         </>
         <>{msj}</>
       </div>
-
-
-
-
       <>{desOn && <FormUser close={setDesOn} />}</>
     </>
   );
