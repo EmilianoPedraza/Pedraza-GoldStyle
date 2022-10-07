@@ -88,7 +88,6 @@ const FormUser = ({ close }) => {
         }}
         className="boxForm__div"
       >
-        
         {codId !== "" ? (
           <h2>
             Pedido realizado con exito.

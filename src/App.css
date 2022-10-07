@@ -213,12 +213,12 @@ nav {
     background-color: #cb4cfd; }
 
 .opacityOn {
-  opacity: .1; }
+  opacity: 0.1; }
 
 .boxForm {
   opacity: none;
   position: absolute;
-  width: 100%;
+  width: 99%;
   height: 81%;
   top: 19%;
   display: flex;
@@ -228,13 +228,66 @@ nav {
 
 .boxForm__div {
   padding: 2em;
-  width: 60%;
+  width: 25rem;
   height: max-content;
   border-style: none;
   border-radius: 2rem;
-  background-color: white; }
+  background-color: #1f1f1f;
+  border: solid #bebebe 1px; }
   .boxForm__div .--form {
-    display: grid; }
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    grid-template-areas: "namee namee namee"
+ "surname surname surname"
+ "correo correo correo"
+ "tel tel tel"
+ "enviar -- cancel";
+    row-gap: 0.5rem; }
+
+#name {
+  grid-area: namee;
+  border-radius: 0.5rem;
+  border-width: 1px;
+  padding: 0.5em;
+  background-color: #1f1f1f;
+  color: #868686; }
+
+#surname {
+  grid-area: surname;
+  border-radius: 0.5rem;
+  border-width: 1px;
+  padding: 0.5em;
+  background-color: #1f1f1f;
+  color: #868686; }
+
+#correo {
+  grid-area: correo;
+  border-radius: 0.5rem;
+  border-width: 1px;
+  padding: 0.5em;
+  background-color: #1f1f1f;
+  color: #868686; }
+
+#phone {
+  grid-area: tel;
+  border-radius: 0.5rem;
+  border-width: 1px;
+  padding: 0.5em;
+  background-color: #1f1f1f;
+  color: #868686; }
+
+#submit {
+  background-color: #cb4cfd;
+  border-style: none;
+  border-radius: 1em;
+  grid-area: enviar; }
+
+#cancel {
+  background-color: #cb4cfd;
+  border-style: none;
+  border-radius: 1em;
+  grid-area: cancel; }
 
 .home {
   width: 100%;
