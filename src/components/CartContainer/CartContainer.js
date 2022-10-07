@@ -11,40 +11,52 @@ import FormUser from "../FormUser/FormUser";
 
 const CartContainer = () => {
   const { listProdCar, removeItem, clear, totales } = useContext(CartContext);
+  const [renderValid, setRenderValid] = useState({
+    formValid: false,
+  });
 
-  //estado para mensaje o boton de vaciar carrito
-  const [msj, setMsj] = useState();
-  const [desOn, setDesOn] = useState(false);
-
-  const desplegar = () => {
-    setDesOn(true);
+  
+  const formValidState = (val) => {
+    setRenderValid({...renderValid, ["formValid"]: val });
   };
+
+  const mensajeState = (val) => {
+    setRenderValid({ ...renderValid, ["mensaje"]: val });
+  };
+
 
   useEffect(() => {
     listProdCar.length > 0
-      ? setMsj(
+      ? mensajeState(
           <>
             <button className="--btnVaciarCar" onClick={() => clear()}>
               Vaciar Carrito
             </button>
-            <button className="--btnFinalCom" onClick={() => desplegar()}>
+            <button
+              className="--btnFinalCom"
+              onClick={() => formValidState(true)}
+            >
               Finalizar Compra
             </button>
           </>
         )
-      : setMsj(1);
+      : mensajeState(1);
   }, [listProdCar]);
 
   return (
     <>
-      {msj === 1 && (
+      {renderValid.mensaje === 1 && (
         <div className="--NotCarContainer">
           <h2 className="--notProd">
             No se encuentran productos disponibles en el carrito
           </h2>
         </div>
       )}
-      <div className={"--conteinerCar " + `${desOn ? "opacityOn" : ""}`}>
+      <div
+        className={
+          "--conteinerCar " + `${renderValid.formValid ? "opacityOn" : ""}`
+        }
+      >
         <div className="--itemContainer">
           {listProdCar.map((prd) => (
             <div key={prd.id + "c"} className="--item">
@@ -67,9 +79,9 @@ const CartContainer = () => {
             <h3 className="--total">Total: {totales.totalPrices} ARS</h3>
           )}
         </>
-        <>{msj}</>
+        <>{renderValid.mensaje}</>
       </div>
-      <>{desOn && <FormUser close={setDesOn} />}</>
+      <>{renderValid.formValid && <FormUser close={setRenderValid} />}</>
     </>
   );
 };
