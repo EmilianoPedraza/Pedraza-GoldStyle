@@ -238,11 +238,7 @@ nav {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(5, 1fr);
-    grid-template-areas: "namee namee namee"
- "surname surname surname"
- "correo correo correo"
- "tel tel tel"
- "enviar -- cancel";
+    grid-template-areas: "namee namee namee" "surname surname surname" "correo correo correo" "tel tel tel" "enviar -- cancel";
     row-gap: 0.5rem; }
 
 #name {

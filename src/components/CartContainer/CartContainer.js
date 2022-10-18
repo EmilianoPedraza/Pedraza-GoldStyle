@@ -36,13 +36,13 @@ const CartContainer = () => {
 
   return (
     <>
-      {msj === 1 ? (
+      {msj === 1 &&(
         <div className="--NotCarContainer">
           <h2 className="--notProd">
             No se encuentran productos disponibles en el carrito
           </h2>
         </div>
-      ) : msj }
+      )}
       <div className={"--conteinerCar " + `${desOn ? "opacityOn" : ""}`}>
         <div className="--itemContainer">
           {listProdCar.map((prd) => (
@@ -62,6 +62,7 @@ const CartContainer = () => {
           ))}
         </div>
         <>
+            <>{msj !== 1 && msj}</>
           {listProdCar.length > 0 && (
             <h3 className="--total">Total: {totales.totalPrices} ARS</h3>
           )}
