@@ -5,58 +5,45 @@ import { useContext } from "react";
 import { CartContext } from "../../context/CartContext";
 //icono de eliminar
 import trashDelete from "../../assets/icos/trashDelete.svg";
-
 //formulario de finalización
 import FormUser from "../FormUser/FormUser";
 
 const CartContainer = () => {
-  const { listProdCar, removeItem, clear, totales } = useContext(CartContext);
-  const [renderValid, setRenderValid] = useState({
-    formValid: false,
-  });
+  const {listProdCar, removeItem, clear, totales } = useContext(CartContext);
 
-  
-  const formValidState = (val) => {
-    setRenderValid({...renderValid, ["formValid"]: val });
+  //estado para mensaje o boton de vaciar carrito
+  const [msj, setMsj] = useState();
+  const [desOn, setDesOn] = useState(false);
+
+  const desplegar = () => {
+    setDesOn(true);
   };
-
-  const mensajeState = (val) => {
-    setRenderValid({ ...renderValid, ["mensaje"]: val });
-  };
-
 
   useEffect(() => {
     listProdCar.length > 0
-      ? mensajeState(
+      ? setMsj(
           <>
             <button className="--btnVaciarCar" onClick={() => clear()}>
               Vaciar Carrito
             </button>
-            <button
-              className="--btnFinalCom"
-              onClick={() => formValidState(true)}
-            >
+            <button className="--btnFinalCom" onClick={() => desplegar()}>
               Finalizar Compra
             </button>
           </>
         )
-      : mensajeState(1);
+      : setMsj(1);
   }, [listProdCar]);
 
   return (
     <>
-      {renderValid.mensaje === 1 && (
+      {msj === 1 ? (
         <div className="--NotCarContainer">
           <h2 className="--notProd">
             No se encuentran productos disponibles en el carrito
           </h2>
         </div>
-      )}
-      <div
-        className={
-          "--conteinerCar " + `${renderValid.formValid ? "opacityOn" : ""}`
-        }
-      >
+      ) : msj }
+      <div className={"--conteinerCar " + `${desOn ? "opacityOn" : ""}`}>
         <div className="--itemContainer">
           {listProdCar.map((prd) => (
             <div key={prd.id + "c"} className="--item">
@@ -79,9 +66,8 @@ const CartContainer = () => {
             <h3 className="--total">Total: {totales.totalPrices} ARS</h3>
           )}
         </>
-        <>{renderValid.mensaje}</>
       </div>
-      <>{renderValid.formValid && <FormUser close={setRenderValid} />}</>
+      <>{desOn && <FormUser close={setDesOn} />}</>
     </>
   );
 };

@@ -160,13 +160,13 @@ Routes
   import { doc, getDoc } from firebasefirestore;
   import { db } from ......utilsfireBase;
 
-- #### ItemDetail(srccomponentsProductosItemCountItemCount.js)
+- #### ItemCount(srccomponentsProductosItemCountItemCount.js)
   `Este componente contiene las siguientes dependencias para su funcionamiento`
   ```
   import { useState } from react;
   ```
   `Y es la unica, dado que el mismo cumple la función de realizar un conteo mediante eventos, almacenar dicha cantidad en un estado y posteriormente utiliza una función que recibe como prop, para enviar a la misma la variable de estado que lleva la cuenta, y en terminos simples si nos fijamos en el componente padre, osea el que se explico anteriormente estamos hablando de una función que provee el contexto.`
-- #### ItemDetail(rootsrccomponentsNavBarContainerNavBarContainer.js)
+- #### NavbarContainer(src/components/NavBarContainerNavBarContainer.js)
 
   `Es la barra de navegación del sitio para ir a cada no recibe ninguna prop, utiliza NavLink en conjunto con un componente que será explicado posteriormente en la documentación, tiene como dependencias imagenes vectoriales que son las siguientes`
   import bag from ....assetsicosbag.svg
