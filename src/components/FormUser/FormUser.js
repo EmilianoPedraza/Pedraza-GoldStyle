@@ -1,7 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-//metodo para subir un documento a mi colección en firebase
 import { addDoc, collection } from "firebase/firestore";
-//referencia de mi firebase
 import { db } from "../../utils/fireBase";
 import { CartContext } from "../../context/CartContext";
 
@@ -32,7 +30,7 @@ const FormUser = ({ close }) => {
   };
   useEffect(() => {
     if (codId !== "") {
-      const salir = new Promise((res) => {
+      new Promise((res) => {
         setTimeout(() => {
           res(false);
         }, 4000);

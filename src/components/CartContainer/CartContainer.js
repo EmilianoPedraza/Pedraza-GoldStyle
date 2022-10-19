@@ -8,15 +8,11 @@ import FormUser from "../FormUser/FormUser";
 
 const CartContainer = () => {
   const {listProdCar, removeItem, clear, totales } = useContext(CartContext);
-
-
   const [msj, setMsj] = useState();
   const [desOn, setDesOn] = useState(false);
-
   const desplegar = () => {
     setDesOn(true);
   };
-
   useEffect(() => {
     listProdCar.length > 0
       ? setMsj(
@@ -30,7 +26,7 @@ const CartContainer = () => {
           </>
         )
       : setMsj(1);
-  }, [listProdCar]);
+  }, [listProdCar, clear]);
 
   return (
     <>
@@ -41,7 +37,7 @@ const CartContainer = () => {
           </h2>
         </div>
       )}
-      <div className={"--conteinerCar " + `${desOn ? "opacityOn" : ""}`}>
+      <div className={`--conteinerCar ${desOn && "opacityOn" }`}>
         <div className="--itemContainer">
           {listProdCar.map((prd) => (
             <div key={prd.id + "c"} className="--item">
@@ -54,7 +50,7 @@ const CartContainer = () => {
                 className="--deleteItemCar"
                 onClick={() => removeItem(prd.id)}
               >
-                <img src={trashDelete} />
+                <img src={trashDelete} alt="trash delete-delet product"/>
               </button>
             </div>
           ))}

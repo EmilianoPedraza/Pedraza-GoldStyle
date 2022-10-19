@@ -4,7 +4,7 @@ const Homee = () => {
   return (
     <div className="home">
       <div className="img-home" >
-        <img src={office} />
+        <img src={office} alt="oficina"/>
       </div>
 
       <div className="__div">

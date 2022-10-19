@@ -1,8 +1,8 @@
 
-const CartWidgetContaier = ({rutImg, children}) => {
+const CartWidgetContaier = ({rutImg, children, altt}) => {
   return (
     <div className="--cardWidgetC">
-      <img src={rutImg}/>
+      <img src={rutImg} alt={altt}/>
       {children}
     </div>
   );

@@ -2,8 +2,6 @@ import React from "react";
 import { useState, useEffect } from "react";
 export const CartContext = React.createContext();
 
-//Componente proveedor con funciones incorporadas
-
 export const CartProvider = ({ children }) => {
   const [listProdCar, setListProdCar] = useState([]);
   const [totales, setTotales]=useState({})
@@ -11,9 +9,7 @@ export const CartProvider = ({ children }) => {
   
   useEffect(()=>{
     let acu = 0
-    listProdCar.map(item=>{
-      acu += item.totalPrice
-    })
+    listProdCar.forEach(item => acu += item.totalPrice)
     setTotales({
       ...totales,["totalPrices"] : acu, ["cantidadItems"] : listProdCar.length
     })
@@ -26,8 +22,13 @@ export const CartProvider = ({ children }) => {
     const newArray = [...listProdCar]
     if(listProdCar.length>0){
       newArray.map(e=>{
-        e.id === item.id ? e.cantidad += cant : con += 1
-        e.id === item.id ? e.totalPrice = e.cantidad * e.price : null
+        if(e.id === item.id){
+          e.cantidad += cant
+          e.totalPrice = e.cantidad * e.price
+        }
+        else{
+          con += 1
+        }
       })
     }
     if(con === listProdCar.length){
