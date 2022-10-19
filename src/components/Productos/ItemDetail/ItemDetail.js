@@ -28,7 +28,7 @@ const ItemDetail = () => {
   return (
     <div className="--totalData">
       <div className="--divImgBox">
-        <img src={product.image} className="--imgPrd" />
+        <img src={product.image} className="--imgPrd"/>
       </div>
       <div className="--divDataBox">
         <h3 className="--tittlePrd-">{product.name}</h3>

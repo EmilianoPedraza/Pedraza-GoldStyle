@@ -3,15 +3,13 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { useContext } from "react";
 import { CartContext } from "../../context/CartContext";
-//icono de eliminar
 import trashDelete from "../../assets/icos/trashDelete.svg";
-//formulario de finalización
 import FormUser from "../FormUser/FormUser";
 
 const CartContainer = () => {
   const {listProdCar, removeItem, clear, totales } = useContext(CartContext);
 
-  //estado para mensaje o boton de vaciar carrito
+
   const [msj, setMsj] = useState();
   const [desOn, setDesOn] = useState(false);
 
@@ -36,7 +34,7 @@ const CartContainer = () => {
 
   return (
     <>
-      {msj === 1 &&(
+      {msj === 1 && (
         <div className="--NotCarContainer">
           <h2 className="--notProd">
             No se encuentran productos disponibles en el carrito
@@ -47,7 +45,7 @@ const CartContainer = () => {
         <div className="--itemContainer">
           {listProdCar.map((prd) => (
             <div key={prd.id + "c"} className="--item">
-              <img className="--imgCar" src={prd.image} />
+              <img className="--imgCar" src={prd.image} alt={prd.categoria + prd.name}/>
               <ul className="--datesUl">
                 <li>Nombre: {prd.name}</li>
                 <li>Cantidad: {prd.cantidad}</li>
@@ -62,10 +60,10 @@ const CartContainer = () => {
           ))}
         </div>
         <>
-            <>{msj !== 1 && msj}</>
           {listProdCar.length > 0 && (
             <h3 className="--total">Total: {totales.totalPrices} ARS</h3>
           )}
+          {msj !== 1 && msj}
         </>
       </div>
       <>{desOn && <FormUser close={setDesOn} />}</>

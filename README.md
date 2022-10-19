@@ -33,9 +33,9 @@ más adelante
   - ItemListContainer
     - _ItemListContainer.js_
 
-## Contexto(rootsrccontextCartContext.js)
+## Contexto
 
-### CartContext.js
+### CartContext
 
 `Para facilitar el flujo de datos entre los componentes ItemDetail y CartContainer se declara un contexto para que estos ultimos dispongan de información actualizada y funciones para que los mismos usados por otros componentes(ItemDetail, CartContainer) puedan utilizar y actualizar. CartContext.js dispone de un custom provider llamado CartProvider para facilitar su uso, la estructura del contexto seria la siguiente...`
 
@@ -91,7 +91,7 @@ Routes
 
 `BrowserRouter envuelve [div className=App] solo estando dentro de [CartProvider](componente proveedor del contexto). `
 
-## componentes(rootsrcComponents)
+## componentes
 
 ### Componentes de Presentación
 
@@ -102,14 +102,14 @@ Routes
 
 ### Functional Components
 
-- #### ItemListContainer (srccomponentsProductosItemListContainerItemListContainer.js)
+- #### ItemListContainer
   `Es el componente encargado de realizar peticion de la data del servidor(firebased),obteniendo objetos como resultado, muestra una barra de navegación también, que es para realizar un filtrado de productos por categoria mediante NavLink y useParams los params que se pasan a travez de estos NavLink corresponden a una propiedad categoria de los objetos que obtenemos a travez de la petición, siendo cada objeto un producto, para hacer breve la explicación se muestra a continuación las dependencias. Un dato importante es que dentro del proyecto se puede ver una variable de estado que se llama db la misma contiene los datos de la petición. Este componente retorna una barra de navegación que usa NavLink en sus opciónes para que el usuario pueda realizar el fintrado de productos por categoria y utiliza el metodo map para recorrer la variable de estado con la data de los componentes, por cada vuelta de map se llama a otro componente de la sigueinte forma-- ItemList key={- + item.id} prod={item}  siendo item un elemento del array que contiene db(osea un producto). El filtrado mediante params se realiza en la petición, ya que la petición se realiza dentro de un useEffect cuya dependencia es categoryId que toma el valor de los params obtenidos de los NavLink en la barra de navegación por categoria que retorna nuestro componente en cuestión, por ende por cada selección nuestro componente se vuelve a reenderizar y realiza nuevamente la petición pero filtrando los productos.`
   import { useEffect, useState } from react;
   import { useParams, NavLink } from react-router-dom;
   import ItemList from ..ItemListItemList;
   import { where, query, collection, getDocs } from firebasefirestore;
   import { db } from ......utilsfireBase;
-- #### ItemList(srccomponentsProductosItemListitemList.js)
+- #### ItemList
 
   `Recibe como parametro un item que corresponde a un producto, se declara una variable de estado que inicia con el valor tipo string cargando, luego mediante el uso de promesas una validación de la prop recibida(correspondiente a un objeto que representa un producto) y dentro de un useEffect que se ejecuta antes de que se reenderize el componente, se pueden ejecutar dos cosas dentro del mismo, si la promesa había resultado un resolve quiere decir que el producto es un objeto que existe y se procede a pasar el mismo a la variable de estado, si la promesa retorna un rejected la variable de estado recibira como valor una variable boolean false. Ahora quda explicar dos funciones que contiene el componente en cuestion, la primera es mostrar(), mostrar rebcibe un parametro boolean, si es true, retorna codigo JSX con la estructura que tendra el producto a la hora de ser mostrado en el navegador, usando las propiedades del mismo para ello(estaría en la variable de estado el producto dependiendo de la validación del inicio), si se paso como parametro un false retorna la variable de estado product así sin más. por que recordemos que la misma inicia con el valor cargando, la segunda función es rendering() la misma ejecuta la siguiente linea de codigo`
 
@@ -132,7 +132,7 @@ Routes
   import { useEffect, useState } from react;
   import { Link } from react-router-dom;
 
-- #### ItemDetail(srccomponentsProductosItemDetailItemDetail.js)
+- #### ItemDetail
 
   `El componente ItemDetail cumple la función de mostrar más detalles del producto en el sitio, este componente cabe aclarar que al inicio de está sección de documentos en la explicación de App.js fue mostrado dentro de un route de la siguiente forma`
 
@@ -160,13 +160,13 @@ Routes
   import { doc, getDoc } from firebasefirestore;
   import { db } from ......utilsfireBase;
 
-- #### ItemCount(srccomponentsProductosItemCountItemCount.js)
+- #### ItemCount
   `Este componente contiene las siguientes dependencias para su funcionamiento`
   ```
   import { useState } from react;
   ```
   `Y es la unica, dado que el mismo cumple la función de realizar un conteo mediante eventos, almacenar dicha cantidad en un estado y posteriormente utiliza una función que recibe como prop, para enviar a la misma la variable de estado que lleva la cuenta, y en terminos simples si nos fijamos en el componente padre, osea el que se explico anteriormente estamos hablando de una función que provee el contexto.`
-- #### NavbarContainer(src/components/NavBarContainerNavBarContainer.js)
+- #### NavbarContainer
 
   `Es la barra de navegación del sitio para ir a cada no recibe ninguna prop, utiliza NavLink en conjunto con un componente que será explicado posteriormente en la documentación, tiene como dependencias imagenes vectoriales que son las siguientes`
   import bag from ....assetsicosbag.svg
@@ -198,7 +198,7 @@ Routes
 
   `Como se puede ver es para que se muestre la cantidad de items que se agregaron a nuestro carrito.`
 
-- #### CartWidgetContainer(srccomponentsNavBarContainerCartWidgetContainerCartWidgetContainer.js)
+- #### CartWidgetContainer(componente hijo de NavBarContainer)
  ```No cuenta con dependencias dado que es de presentación, pero es inclido recien en este punto dado que solo se usa en el componente que se explico anteriormente y en este punto quedaría más claro.Es para mostrar una imagen con una descripción y children que se reciben como prop y lo hace de la siguiente forma...```
   ```
    div className=--cardWidgetC

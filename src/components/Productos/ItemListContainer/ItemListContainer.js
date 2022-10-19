@@ -1,12 +1,9 @@
 import { useEffect, useState } from "react";
 import { useParams, NavLink } from "react-router-dom";
 import ItemList from "../ItemList/ItemList";
-//direbase
 import { where, query, collection, getDocs } from "firebase/firestore";
 import { db } from "../../../utils/fireBase";
-import { async } from "@firebase/util";
 const ItemListContainer = () => {
-  // const [dt, setDt] = useState('')
   const [dt, setDt] = useState([]);
   const { categoryId } = useParams();
 
