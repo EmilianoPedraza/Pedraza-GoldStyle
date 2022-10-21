@@ -19,7 +19,7 @@ const ItemDetail = () => {
       setProduct(newPrd);
     };
     getProd();
-  }, []);
+  }, [id]);
 
   const onAdd = (dat) => {
     addItem(product, dat);
@@ -28,13 +28,13 @@ const ItemDetail = () => {
   return (
     <div className="--totalData">
       <div className="--divImgBox">
-        <img src={product.image} className="--imgPrd"/>
+        <img src={product.image} className="--imgPrd" alt={product.categoria + product.name}/>
       </div>
       <div className="--divDataBox">
         <h3 className="--tittlePrd-">{product.name}</h3>
         <ul className="--datPrdA-">
           <li className="--categ-">categoria: {product.categoria}</li>
-          <li className="--price-">Precio: {product.price}$</li>
+          <li className="--price-">Precio: {product.price}ARS</li>
           <li className="--stock-">Stock: {product.stock}</li>
         </ul>
         <p className="--especificacines">{product.detail}</p>

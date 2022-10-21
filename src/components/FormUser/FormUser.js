@@ -37,13 +37,12 @@ const FormUser = ({ close }) => {
       })
         .then((r) => {
           close();
-          return true;
         })
         .then((r) => {
           clear();
         });
     }
-  }, [codId]);
+  }, [codId, clear, close]);
 
   const form = () => {
     return (
