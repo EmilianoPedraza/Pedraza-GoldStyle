@@ -1,6 +1,6 @@
 # GoldStyle-Dates
 
-`GoldStyle es una SPA que utiliza la libreria de React JS, SASS para pre-procesar codigo CSS, no incorpora librerias de estilo ni framewoorks para este ultimo, estamos hablando de la primera versión del proyecto.`
+`GoldStyle es una SPA que utiliza la libreria de React JS, SASS para pre-procesar codigo CSS, no incorpora librerias de estilo ni framewoorks, estamos hablando de la primera versión del proyecto.`
 
 ## Componentes (rootsrccomponents)
 

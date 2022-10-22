@@ -34,7 +34,7 @@ const ItemDetail = () => {
         <h3 className="--tittlePrd-">{product.name}</h3>
         <ul className="--datPrdA-">
           <li className="--categ-">categoria: {product.categoria}</li>
-          <li className="--price-">Precio: {product.price}ARS</li>
+          <li className="--price-">Precio: {new Intl.NumberFormat('de-DE', { style: 'currency', currency: 'ARS' }).format(product.price)}</li>
           <li className="--stock-">Stock: {product.stock}</li>
         </ul>
         <p className="--especificacines">{product.detail}</p>
