@@ -57,7 +57,7 @@ const CartContainer = () => {
         </div>
         <>
           {listProdCar.length > 0 && (
-            <h3 className="--total">Total: {totales.totalPrices} ARS</h3>
+            <h3 className="--total">Total: {new Intl.NumberFormat('de-DE', { style: 'currency', currency: 'ARS' }).format(totales.totalPrices)}</h3>
           )}
           {msj !== 1 && msj}
         </>
