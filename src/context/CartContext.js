@@ -18,7 +18,7 @@ export const CartProvider = ({ children }) => {
     setTotales(newTotal);
   }, [listProdCar]);
 
-  //agregar productos
+
   const addItem = (item, cant) => {
     let con = 0;
     const newArray = [...listProdCar];
