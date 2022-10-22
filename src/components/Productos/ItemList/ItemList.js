@@ -24,7 +24,7 @@ const ItemList = (prod) => {
         image: r.prod.image,
         stock: r.prod.stock,
       });
-    })
+    },[])
     .catch((r) => {
       setProduct(false);
       console.warn("Error en prop, prop:", r)

@@ -28,21 +28,6 @@ const FormUser = ({ close }) => {
       setCodId(response.id);
     });
   };
-  useEffect(() => {
-    if (codId !== "") {
-      new Promise((res) => {
-        setTimeout(() => {
-          res(false);
-        }, 4000);
-      })
-        .then((r) => {
-          close();
-        })
-        .then((r) => {
-          clear();
-        });
-    }
-  }, [codId, clear, close]);
 
   const form = () => {
     return (
@@ -62,16 +47,39 @@ const FormUser = ({ close }) => {
         <button type="submit" id="submit">
           Enviar
         </button>
-        <button onClick={() => close(false)} id="cancel">
+        <button
+          onClick={(ev) => {
+            ev.preventDefault();
+            close(false);
+          }}
+          id="cancel"
+        >
           Cancelar
         </button>
       </form>
     );
   };
 
+  useEffect(() => {
+    if (codId !== "") {
+      new Promise((res) => {
+        setTimeout(() => {
+          res(false);
+        }, 4000);
+      })
+        .then((r) => {
+          close();
+        })
+        .then((r) => {
+          clear();
+        });
+    }
+  }, [codId, clear, close]);
+
   return (
     <div
-      onClick={() => {
+      onClick={(ev) => {
+        ev.preventDefault()
         close(false);
         if (codId !== "") {
           clear();

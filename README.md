@@ -1,6 +1,6 @@
 # GoldStyle-Dates
 
-`GoldStyle es una SPA que utiliza la libreria de React JS, SASS para pre-procesar codigo CSS, no incorpora librerias de estilo ni framewoorks, estamos hablando de la primera versión del proyecto.`
+`GoldStyle es una SPA que utiliza la libreria de React JS, SASS para pre-procesar codigo CSS, no incorpora librerias de estilo ni framewoorks, más que los metodos de la API rest de FireBase que contiene la información de productos y ordentes del proyecto. Estamos hablando de la primera versión del proyecto.`
 
 ## Componentes (rootsrccomponents)
 
@@ -211,25 +211,46 @@ Routes
 
   - #### CartContainer
 
+    `Dependencias de CartContainer:`
+    import { useEffect } from "react";
+    import { useState } from "react";
+    import { useContext } from "react";
+    import { CartContext } from "../../context/CartContext";
+    import trashDelete from "../../assets/icos/trashDelete.svg";
+    import FormUser from "../FormUser/FormUser"
+
     `CartContainer es un componente cuya función principal es la de mostrar la sección de carrito.Se basa le saca provecho al contexto CartContext utilizando la totalidad de las funciones e información del proveedor de este ultimo. El componente en cuestión tambien utiliza dos estados`
 
     ```
     const [msj, setMsj] = useState();
     const [desOn, setDesOn] = useState(false);
     ```
+
     `El primero recibe su valor mediante un useEffect cuyas dependencia relevante es listProdCar de CartContext. como msj, si listProdCar(array de productos correspondiente a elementos Obj correspondientes a productos agregados al carrito) es mayor a cero, quiere decir que se agregaron productos, por lo tanto al estado msj mediante setMsj se le pasa como valor codigo JSX que fundamentalmente tiene 2 elementos de tipo button con eventos para "vaciar el carrito"(que utiliza la función clear del componente proveedor de cartContext) y "Finalizar compra" cuyo evento ejecuta la función desplegar(), si ListProdCar`
-    `La variable de estado "desOn" se utliza para realizar un reenderizado condicional del componente, estrictamente hablando para decirle al mismo que el usuario quiere finalizar la compra, por tanto nuestro componente CartContainer al final del codigo JSX que retorna, analiza mediante un condicional la variable de estado, si resulta true, el mismo se encarga de reenderizar un componente hijo FormUser(formulario de datos) y ya que estamos de paso se le pasa a msj el valor uno en caso contrario, por que? porque tambíen existe otro condicional que reenderiza nuestro componente,cuyo retorno es un mensaje "No se encuentran productos en el carrito".` 
+    `La variable de estado "desOn" se utliza para realizar un reenderizado condicional del componente, estrictamente hablando para decirle al mismo que el usuario quiere finalizar la compra, por tanto nuestro componente CartContainer al final del codigo JSX que retorna, analiza mediante un condicional la variable de estado, si resulta true, el mismo se encarga de reenderizar un componente hijo FormUser(formulario de datos) y ya que estamos de paso se le pasa a msj el valor uno en caso contrario, por que? porque tambíen existe otro condicional que reenderiza nuestro componente,cuyo retorno es un mensaje "No se encuentran productos en el carrito".`
+
     - desplegar():
       `Cambia el valor por defecto que contiene la variable de estado "desOn" que inicialmente comienza valiendo false.`
 
-
-
   - #### FormUser
-    `ce`
+    `FormUser es el componente encargado de mostrarle al usuario un formulario para que llene al finalizar una compra. Como funciona FormUser? FormUser primero recibe una prop correspondiente a una función de estado, ya que FormUser es un componente hijo de CartContainer estamos hablando de una función de variable de estado declarada dentro de este ultimo, por otro lado FormUser usa el contexto CartContext, inlcuyendo funciones de su proveedor como tambíen hooks del mismo. Tambíen es importante aclarar que nuestro componente en cuenstion usa hooks de estado, especificamente hablando el siguiente...`
+    ```
+      const [codId, setCodId] = useState("");
+    ```
+    `Tambíen cuenta con la funcíon form() que se encarga de retornar el formulario, se hizo así para facilitar un poco la comprensión de FormUser nada más. El formulario retornado cuando se presiona el boton de enviar activa la función dates() y en caso de presionar el boton de calncelar envia el parametro de valor boleano false a la prop que recibe FormUser correspondiente a la variable una función para cambiar estado, ya FormUser es un componente hijo de CartContainer dicha función de este ultimo le indica al mismo cuando no reenderizar FormUser. dates() es una función que aparte de prevenir el evento por default del formulario, pasa los datos ingresados del mismo en propiedades de un objeto declarado dentro de su ambito, dentro de una propiedad el array listProdCar, la fecha y hora mediante new Date() y el precio total mediante "totales.totalPrices". Para que al final de la función se suba nuestro objeto en cuestion a una coleción orders y le pase a nuestro hook de estado "codId" el id de la colección. Por otro lado cuenta con un useEffect cuya dependencia relevante es "codId", ya que si se cumple codId !== "" significa que contiene el id de una orden por lo tanto si se finalizo una compra y dado el caso se procede a ejecutar un setTimeut() dentro de una promesa, cuando pase el tiempo declarado dentro de setTimeut() la promesa pasa como resultado un false, en el siguiente paso se ejecuta un then() que ejecuta close()->(prop que recibe FormUser) para finalizr el reenderizado del formulario y luego en otro then ejecuta clear() para eliminar los productos agregados al carrito siendo clear() una función del proveedor de nuestro contexto CartContext.`
+    `Algo que tambíen se puede ver es que el componente FormUser retorna un elemento div y dentro otro div hijo, es así por cuestiones de diseño, el elemento div padre tiene un evento onClick cuyo proposito es que si se hace click en el mismo se ejecuta la prop recibida como children y se le pasa el valor false a CartContainer para que el componente FormUser se cierre, dentro del div hijo se tiene un evento para prevenir la propagación de eventos de su contenido que refiere al valor retornado por la función form() que corresponde al formulario o un mensaje con el id de la colección donde fue a parar el pedidom, Como se logra esto? es sencillo, si nuestra variable de estado codId !== "" significa aún no se envio el formulario ya que no se genero nigun id de una colleción correspondiente, por lo tanto cuando se llena el formulario y se envia el pedido con todos los datos, codId cambiaria su valor y entoces se vuelve a renderizar FormUser pero está vez mostrando el mensaje en cuestion. En el componente se utilizan las siguientes dependencias`
+    import { useContext, useEffect, useState } from "react";
+    import { addDoc, collection } from "firebase/firestore";
+    import { db } from "../../utils/fireBase";
+    import { CartContext } from "../../context/CartContext";
+
 
 ## Para ver la funcionalidad del proyecto ⬇⬇
+
 ### versión base(opcional mirar, es una versión vieja y desactualizada)
+
 https://drive.google.com/file/d/1Di1FNocVbWfbYWjTMXwJDzTuzCBj1eVA/view?usp=sharing
 
 ### Version > optimizacion-3(version actualizada) ⭐
+
 https://drive.google.com/file/d/1I6a0dqDTsfzPgTzMxmCUMexoGUuCeueD/view?usp=sharing
