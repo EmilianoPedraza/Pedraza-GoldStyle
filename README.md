@@ -45,24 +45,24 @@ más adelante
 
 #### CartProvider funciona en base a lo siguiente
 
-##### _Hooks usados en CartProvider
+##### \_Hooks usados en CartProvider
 
 - useState
 
   - listProdCar `Array de objetos(listado de productos)`
   - totales `inicia vacio, pero mediante la ejecución de useEffect dentro de CartProvider procede a contener un objeto que contiene 2 propiedades con valor de tipo Number, una que funciona como contador de la cantidad de elementos de ListProdCar(listado de productos), esta propiedad recibe el nombre de cantidadItems y la otra propiedad acumula los valores númericos de la propiedad totalPrices de cada elemento(que son objetos) de ListProdCar.`
 
-- useEffect`Usa como dependencia a listProdCar(array de objetos) para ejecutar un codigo cada que este ultimo reciba una actualización. Dicho codigo consiste en recorrer el array(mediante el metodo forEach) y acumular los valores de las propiedades de cada elemento(totalPrice y cantidad) en un nuevo objeto "newTotal" instianciado dentro del ambito de useEffect cuyas propiedades funcionan como acumuladores. Al final de la ejecución agrega a setTotales(metodo declarado para actualizar la variable de estado Totales) el objeto "newTotal" con las propiedades: totalPrices(acumulador del valor de la propiedad de cada elemento de listProdCar "totalPrice") y  cantidadItems(acumulador del valor de la propiedad "cantidad" de cada elemento de listProdCar).`
+- useEffect`Usa como dependencia a listProdCar(array de objetos) para ejecutar un codigo cada que este ultimo reciba una actualización. Dicho codigo consiste en recorrer el array(mediante el metodo forEach) y acumular los valores de las propiedades de cada elemento(totalPrice y cantidad) en un nuevo objeto "newTotal" instianciado dentro del ambito de useEffect cuyas propiedades funcionan como acumuladores. Al final de la ejecución agrega a setTotales(metodo declarado para actualizar la variable de estado Totales) el objeto "newTotal" con las propiedades: totalPrices(acumulador del valor de la propiedad de cada elemento de listProdCar "totalPrice") y cantidadItems(acumulador del valor de la propiedad "cantidad" de cada elemento de listProdCar).`
 
-##### _Functions de CartProvider
+##### \_Functions de CartProvider
 
 - addItem()`Creada para agregar elementos(de tipo obj) a ListProdCar. Recibe dos paramentros cant(un valor númerico) y item(un objeto), este conciste en la delcaración de una variable que funciona como contador(con) y una constante newArray que funciona como copia de listProdCar y posteriormente una estructura condicional.`
 
-  - Primer if En pocas palabras si listProdCar.length  0, es decir no está vacio, valida si existe un elemento que comparta el mismo valor de su propiedad e.id (siendo e un elemento de newArray) con la propiedad item.id(sientdo item un parametro recibido), en caso de que sea el caso, actualiza dos de las propiedades del objeto que pertenece a newArray, e.cantidad = cant y e.totalPrice = e.price  cant, en caso contrario la variable contadora suma 1.
-  - segundo condicional if se ejecuta si el contador(con) es igual a listProdCar.lenth, de esta forma la condición resulta verdadera solo si listProdCar está vacio o si en el primer condicional no encontro coincidencia con alguno de sus elementos del array copia(newArray) con respecto al parametro item, esto se debe a que las propiedades cantidad y totalPrice inicialmente no existen en el parametro item que se intentan agregar a listProdCar, por lo tanto, este segundo condicional if es el que se encarga de agregar las propiedades en una nueva constante itemCar declarada dentro del condicional y cuyo valor es igual a las propiedades de item con dos propiedades adicionales agregadas que son cantidad = cant y totalPrice = cant  item.price, al final se ejecuta la siguiente linea de codigo setListProdCar([...newArray, ...itemCar])
+  - Primer if En pocas palabras si listProdCar.length 0, es decir no está vacio, valida si existe un elemento que comparta el mismo valor de su propiedad e.id (siendo e un elemento de newArray) con la propiedad item.id(sientdo item un parametro recibido), en caso de que sea el caso, actualiza dos de las propiedades del objeto que pertenece a newArray, e.cantidad = cant y e.totalPrice = e.price cant, en caso contrario la variable contadora suma 1.
+  - segundo condicional if se ejecuta si el contador(con) es igual a listProdCar.lenth, de esta forma la condición resulta verdadera solo si listProdCar está vacio o si en el primer condicional no encontro coincidencia con alguno de sus elementos del array copia(newArray) con respecto al parametro item, esto se debe a que las propiedades cantidad y totalPrice inicialmente no existen en el parametro item que se intentan agregar a listProdCar, por lo tanto, este segundo condicional if es el que se encarga de agregar las propiedades en una nueva constante itemCar declarada dentro del condicional y cuyo valor es igual a las propiedades de item con dos propiedades adicionales agregadas que son cantidad = cant y totalPrice = cant item.price, al final se ejecuta la siguiente linea de codigo setListProdCar([...newArray, ...itemCar])
   - else solo ejecuta setListProdCar(newArray), ya que se ejecuta solo en caso del que segundo condicional no lo haga significa que si se encontro coincidencia dentro del primer if, por lo tanto el array copia newArray recibio una actualización dentro de las propiedades de uno de sus elementos, y ahora se remplazara el array listProdCar original por el array copia cuyo contenido está actualizado.
 
-  `De esta forma se puede ver como los productos se muestran en carrito con cada item mostrando la cantidad de el mismo que fue agregado más una propiedad de precio total que equivale al precio del producto  la cantidad del mismo que fueron agregados`
+  `De esta forma se puede ver como los productos se muestran en carrito con cada item mostrando la cantidad de el mismo que fue agregado más una propiedad de precio total que equivale al precio del producto la cantidad del mismo que fueron agregados`
 
 - removeItem()`Encargado de eliminar elementos(productos) de listProdCar, está funcion recibe como parametro un string que correspondería a un id de un producto, la funcion realiza un filtrado de elementos(osea productos) de listProdCar mediante el metodo filter(), todos los elementos del array listProdCar cuya propiedad id sea distinta al parametro ingresado a la función pasan a formar parte de una constante arrowDifrnt en un nuevo array y este ultimo remplazara al array original de listProdCar.`
 - clear()`Para eliminar todo el array de ListProdCar(osea eliminar productos) solo remplaza el mismo por un array vacio.`
@@ -81,12 +81,12 @@ import CartContainer from .componentsCartContainerCartContainer;
 `Tambíen es necesario destacar el uso de react-router-dom especificamente los metodos BrowserRouter, Routes, Route, siendo las rutas establecidas las siguientes`
 NavBarContaier (NavBarConteiner se encuentra fuera de routes dado que es la barra de navegación)
 Routes
-Route path= element={Homee } 
-Route path=contacto element={Contacto } 
-Route path=productos element={ItemListContainer } 
+Route path= element={Homee }
+Route path=contacto element={Contacto }
+Route path=productos element={ItemListContainer }
 Route path=productoscategoryId element={ItemListContainer }
 Route path=productoscategoryIdid element={ItemDetail }
-Route path=carrito element={CartContainer} 
+Route path=carrito element={CartContainer}
 Routes
 
 `BrowserRouter envuelve [div className=App] solo estando dentro de [CartProvider](componente proveedor del contexto). `
@@ -103,7 +103,7 @@ Routes
 ### Functional Components
 
 - #### ItemListContainer
-  `Es el componente encargado de realizar peticion de la data del servidor(firebased),obteniendo objetos como resultado, muestra una barra de navegación también, que es para realizar un filtrado de productos por categoria mediante NavLink y useParams los params que se pasan a travez de estos NavLink corresponden a una propiedad categoria de los objetos que obtenemos a travez de la petición, siendo cada objeto un producto, para hacer breve la explicación se muestra a continuación las dependencias. Un dato importante es que dentro del proyecto se puede ver una variable de estado que se llama db la misma contiene los datos de la petición. Este componente retorna una barra de navegación que usa NavLink en sus opciónes para que el usuario pueda realizar el fintrado de productos por categoria y utiliza el metodo map para recorrer la variable de estado con la data de los componentes, por cada vuelta de map se llama a otro componente de la sigueinte forma-- ItemList key={- + item.id} prod={item}  siendo item un elemento del array que contiene db(osea un producto). El filtrado mediante params se realiza en la petición, ya que la petición se realiza dentro de un useEffect cuya dependencia es categoryId que toma el valor de los params obtenidos de los NavLink en la barra de navegación por categoria que retorna nuestro componente en cuestión, por ende por cada selección nuestro componente se vuelve a reenderizar y realiza nuevamente la petición pero filtrando los productos.`
+  `Es el componente encargado de realizar peticion de la data del servidor(firebased),obteniendo objetos como resultado, muestra una barra de navegación también, que es para realizar un filtrado de productos por categoria mediante NavLink y useParams los params que se pasan a travez de estos NavLink corresponden a una propiedad categoria de los objetos que obtenemos a travez de la petición, siendo cada objeto un producto, para hacer breve la explicación se muestra a continuación las dependencias. Un dato importante es que dentro del proyecto se puede ver una variable de estado que se llama db la misma contiene los datos de la petición. Este componente retorna una barra de navegación que usa NavLink en sus opciónes para que el usuario pueda realizar el fintrado de productos por categoria y utiliza el metodo map para recorrer la variable de estado con la data de los componentes, por cada vuelta de map se llama a otro componente de la sigueinte forma-- ItemList key={- + item.id} prod={item} siendo item un elemento del array que contiene db(osea un producto). El filtrado mediante params se realiza en la petición, ya que la petición se realiza dentro de un useEffect cuya dependencia es categoryId que toma el valor de los params obtenidos de los NavLink en la barra de navegación por categoria que retorna nuestro componente en cuestión, por ende por cada selección nuestro componente se vuelve a reenderizar y realiza nuevamente la petición pero filtrando los productos.`
   import { useEffect, useState } from react;
   import { useParams, NavLink } from react-router-dom;
   import ItemList from ..ItemListItemList;
@@ -199,7 +199,9 @@ Routes
   `Como se puede ver es para que se muestre la cantidad de items que se agregaron a nuestro carrito.`
 
 - #### CartWidgetContainer(componente hijo de NavBarContainer)
- ```No cuenta con dependencias dado que es de presentación, pero es inclido recien en este punto dado que solo se usa en el componente que se explico anteriormente y en este punto quedaría más claro.Es para mostrar una imagen con una descripción y children que se reciben como prop y lo hace de la siguiente forma...```
+
+  `No cuenta con dependencias dado que es de presentación, pero es inclido recien en este punto dado que solo se usa en el componente que se explico anteriormente y en este punto quedaría más claro.Es para mostrar una imagen con una descripción y children que se reciben como prop y lo hace de la siguiente forma...`
+
   ```
    div className=--cardWidgetC
       img src={rutImg} alt={descriptionImg}
@@ -209,7 +211,25 @@ Routes
 
   - #### CartContainer
 
+    `CartContainer es un componente cuya función principal es la de mostrar la sección de carrito.Se basa le saca provecho al contexto CartContext utilizando la totalidad de las funciones e información del proveedor de este ultimo. El componente en cuestión tambien utiliza dos estados`
+
+    ```
+    const [msj, setMsj] = useState();
+    const [desOn, setDesOn] = useState(false);
+    ```
+    `El primero recibe su valor mediante un useEffect cuyas dependencia relevante es listProdCar de CartContext. como msj, si listProdCar(array de productos correspondiente a elementos Obj correspondientes a productos agregados al carrito) es mayor a cero, quiere decir que se agregaron productos, por lo tanto al estado msj mediante setMsj se le pasa como valor codigo JSX que fundamentalmente tiene 2 elementos de tipo button con eventos para "vaciar el carrito"(que utiliza la función clear del componente proveedor de cartContext) y "Finalizar compra" cuyo evento ejecuta la función desplegar(), si ListProdCar`
+    `La variable de estado "desOn" se utliza para realizar un reenderizado condicional del componente, estrictamente hablando para decirle al mismo que el usuario quiere finalizar la compra, por tanto nuestro componente CartContainer al final del codigo JSX que retorna, analiza mediante un condicional la variable de estado, si resulta true, el mismo se encarga de reenderizar un componente hijo FormUser(formulario de datos) y ya que estamos de paso se le pasa a msj el valor uno en caso contrario, por que? porque tambíen existe otro condicional que reenderiza nuestro componente,cuyo retorno es un mensaje "No se encuentran productos en el carrito".` 
+    - desplegar():
+      `Cambia el valor por defecto que contiene la variable de estado "desOn" que inicialmente comienza valiendo false.`
+
+
+
   - #### FormUser
-  ```ce```
+    `ce`
+
 ## Para ver la funcionalidad del proyecto ⬇⬇
+### versión base(opcional mirar, es una versión vieja y desactualizada)
 https://drive.google.com/file/d/1Di1FNocVbWfbYWjTMXwJDzTuzCBj1eVA/view?usp=sharing
+
+### Version > optimizacion-3(version actualizada) ⭐
+https://drive.google.com/file/d/1I6a0dqDTsfzPgTzMxmCUMexoGUuCeueD/view?usp=sharing

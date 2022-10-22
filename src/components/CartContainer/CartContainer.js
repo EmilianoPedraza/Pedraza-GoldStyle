@@ -1,4 +1,3 @@
-import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
 import { useContext } from "react";
@@ -7,7 +6,7 @@ import trashDelete from "../../assets/icos/trashDelete.svg";
 import FormUser from "../FormUser/FormUser";
 
 const CartContainer = () => {
-  const {listProdCar, removeItem, clear, totales } = useContext(CartContext);
+  const { listProdCar, removeItem, clear, totales } = useContext(CartContext);
   const [msj, setMsj] = useState();
   const [desOn, setDesOn] = useState(false);
   const desplegar = () => {
@@ -37,11 +36,15 @@ const CartContainer = () => {
           </h2>
         </div>
       )}
-      <div className={`--conteinerCar ${desOn && "opacityOn" }`}>
+      <div className={`--conteinerCar ${desOn && "opacityOn"}`}>
         <div className="--itemContainer">
           {listProdCar.map((prd) => (
             <div key={prd.id + "c"} className="--item">
-              <img className="--imgCar" src={prd.image} alt={prd.categoria + prd.name}/>
+              <img
+                className="--imgCar"
+                src={prd.image}
+                alt={prd.categoria + prd.name}
+              />
               <ul className="--datesUl">
                 <li>Nombre: {prd.name}</li>
                 <li>Cantidad: {prd.cantidad}</li>
@@ -50,14 +53,20 @@ const CartContainer = () => {
                 className="--deleteItemCar"
                 onClick={() => removeItem(prd.id)}
               >
-                <img src={trashDelete} alt="trash delete-delet product"/>
+                <img src={trashDelete} alt="trash delete-delet product" />
               </button>
             </div>
           ))}
         </div>
         <>
           {listProdCar.length > 0 && (
-            <h3 className="--total">Total: {new Intl.NumberFormat('de-DE', { style: 'currency', currency: 'ARS' }).format(totales.totalPrices)}</h3>
+            <h3 className="--total">
+              Total:{" "}
+              {new Intl.NumberFormat("de-DE", {
+                style: "currency",
+                currency: "ARS",
+              }).format(totales.totalPrices)}
+            </h3>
           )}
           {msj !== 1 && msj}
         </>
