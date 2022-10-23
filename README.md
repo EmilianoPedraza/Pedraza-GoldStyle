@@ -251,6 +251,10 @@ Routes
 
 https://drive.google.com/file/d/1Di1FNocVbWfbYWjTMXwJDzTuzCBj1eVA/view?usp=sharing
 
-### Version > optimizacion-3(version actualizada) ⭐
+### Versión > optimizacion-3(version actualizada) ⭐
 
 https://drive.google.com/file/d/1I6a0dqDTsfzPgTzMxmCUMexoGUuCeueD/view?usp=sharing
+
+## Diagrama con la travesía del usuario ⬇⬇
+
+https://drive.google.com/file/d/1I5sK3mYnSzNbTQcLL_DnFJ91d61fRHlW/view?usp=sharing
