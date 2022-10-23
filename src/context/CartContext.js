@@ -46,14 +46,13 @@ export const CartProvider = ({ children }) => {
     }
   };
 
-  //eliminar un producto
   const removeItem = (itemId) => {
     const arrowDifrnt = listProdCar.filter(
       (producto) => producto.id !== itemId
     );
     setListProdCar(arrowDifrnt);
   };
-  //eliminar todos los productos
+
   const clear = () => {
     setListProdCar([]);
   };
