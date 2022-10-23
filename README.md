@@ -258,3 +258,6 @@ https://drive.google.com/file/d/1I6a0dqDTsfzPgTzMxmCUMexoGUuCeueD/view?usp=shari
 ## Diagrama con la travesía del usuario ⬇⬇
 
 https://drive.google.com/file/d/1I5sK3mYnSzNbTQcLL_DnFJ91d61fRHlW/view?usp=sharing
+
+### Puedes probar el sitio directamente en el siguiente elace a modo de prueba ⬇⬇
+https://cool-rugelach-1a052d.netlify.app/
