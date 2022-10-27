@@ -25,7 +25,7 @@ export const CartProvider = ({ children }) => {
     if (listProdCar.length > 0) {
       newArray.forEach((e) => {
         if (e.id === item.id) {
-          e.cantidad = cant;
+          e.cantidad += cant;
           e.totalPrice = e.cantidad * e.price;
         } else {
           con += 1;
